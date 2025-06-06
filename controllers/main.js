@@ -50,12 +50,9 @@ for(let i=0;i<data.length;i++){
     <td>${emplayee.totalSeal}</td>
     <td>${emplayee.rating}</td>
     <td>
-   <button class="btn btn-info" data-toggle="modal"  data-target="#exampleModal" onclick="onEditemplayee('${
-     emplayee.acount
-   }')"> Edit </button>
-   <button class="btn btn-danger " onclick="onDelete('${
-     emplayee.acount
-   }')">Deleate</button>
+    <button class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick="onEditemplayee('${emplayee.acount }')"> Edit </button>
+   
+   <button class="btn btn-danger " onclick="onDelete('${emplayee.acount}')">Deleate</button>
    </td>
     </tr>
     `;
@@ -67,18 +64,47 @@ getId("btnThem").onclick=function(){
   getId("btnCapNhat").style.display="none";
   //hien thi tieu de cua modele 
   getId("header-title").innerHTML="Thêm Nhân Viên";
+  getId("btnThemNV").style.display="block";
+       getId("tknv").disabled=false;
+resetFrom();
+
 }
+getId("searchName").addEventListener("keyup",()=>{
+  const keywork=getId("searchName").value;
+  const findEmployee=nhanVienList.searchEmployee(keywork);
+  renderEmployee(findEmployee);
+});
+getId("btnCapNhat").onclick=function(){
+  //lay lai thong tin de cap nhat mon 
+  const employee=getValue();
+  nhanVienList.updateEmpoyee(employee);
+  renderEmployee(nhanVienList.arr);
+  setLocalStorage(nhanVienList.arr);
+document.getElementsByClassName("close")[0].click();
+
+
+}
+
 const onEditemplayee = (acount) => {
 
-   getId("btnCapNhat").style.display="none";
-  //hien thi tieu de cua modele 
-  getId("header-title").innerHTML="Thêm Nhân Viên";
-    
+  //hien thi tieu de cua modele     
     console.log(acount);
     getId("header-title").innerHTML = "Sửa Nhân Viên";
-    getId("btnThemNV").style.display = "block";
-
+    getId("btnThemNV").style.display = "none";
+getId("btnCapNhat").style.display="block"
     // Hiển thị modal
+    const employee=nhanVienList.getEmployeeByID(acount);
+  if(employee){
+   getId("tknv").disabled=true;
+    //dom toi foodid=>disable de khong su id 
+    getId("tknv").value=employee.acount;
+    getId("name").value=employee.name;
+    getId("email").value=employee.email;
+    getId("password").value=employee.password;
+    getId(" luongCB").value=employee.luongCB;
+    getId("chucvu").value=employee.position;
+    getId("gioLam").value=employee.gioLam;
+  }
   
 };
 const onDelete=(acount)=>{
@@ -116,9 +142,9 @@ setLocalStorage(nhanVienList.arr);
 document.getElementsByClassName("close")[0].click();
 
 }
-// 
+// cliea data khi them mon  
 
 const resetFrom=()=>{
-  getId("").reset();
+  getId("forForm").reset();
 }
 
