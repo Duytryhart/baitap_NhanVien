@@ -25,3 +25,21 @@
   right: -13rem;
   top: -3rem;
 }
+#selLoai {
+  width: 100%;
+  max-width: 200px;
+  display: inline-block;
+}
+
+#btnThem {
+  vertical-align: middle;
+  position: relative;
+  right: -35rem;
+  top:-4rem;
+}
+#forRow{
+  position: relative;
+  right: -4rem;
+  top:-0.5rem;
+}
+

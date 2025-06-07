@@ -50,20 +50,18 @@ class NhanVienList {
     }
   }
   filterEmployee(type){
-    if(type=="all"){
-      return this.arr;
-    }
-    let arrFiltered=[];
-      for (let i = 0; i < this.arr.length; i++) {
-      const emplayee= this.arr[i];
-      if (food.type === type) {
-        arrFiltered.push(emplayee);
-      }
-    }
-
-    console.log();
-
-    return arrFiltered;
+  if (type === "all") {
+    return this.arr;
   }
+  let arrFiltered = [];
+  for (let i = 0; i < this.arr.length; i++) {
+    const emplayee = this.arr[i];
+    if (emplayee.rating === type) {
+      arrFiltered.push(emplayee);
+    }
+  }
+  return arrFiltered;
+}
+
 }
 export default NhanVienList;

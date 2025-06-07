@@ -1,4 +1,4 @@
-class employee {
+class Employee {
   constructor(
     _account,
     _name,
@@ -41,4 +41,4 @@ class employee {
     }
   }
 }
-export default employee;
+export default Employee;
